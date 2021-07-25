@@ -29,6 +29,7 @@ namespace WebApi.Application.BookOperations.Commands.UpdateBook
             }
 
             book.GenreId = Model.GenreId != default ? Model.GenreId : book.GenreId;
+            book.AuthorID = Model.AuthorID != default ? Model.AuthorID : book.AuthorID;
             book.Title = Model.Title != default ? Model.Title : book.Title;
 
             _dbContext.SaveChanges();
@@ -40,6 +41,7 @@ namespace WebApi.Application.BookOperations.Commands.UpdateBook
     {
         public string Title { get; set; }
         public int GenreId { get; set; }
+        public int AuthorID { get; set; }
     }
 
 }
