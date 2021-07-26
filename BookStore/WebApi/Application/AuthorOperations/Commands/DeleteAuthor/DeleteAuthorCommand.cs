@@ -18,10 +18,18 @@ namespace WebApi.Application.AuthorOperations.Commands.DeleteAuthor
         public void Handle()
         {
             var author = _context.Authors.SingleOrDefault(x => x.ID == AuthorID);
+            var AI = _context.Books.Where(x => x.AuthorID == AuthorID).SingleOrDefault()?.AuthorID;
+
             if (author is null)
             {
                 throw new InvalidOperationException("Author not found");
             }
+
+            if (AI is not null)
+            {
+                throw new InvalidOperationException("Author has book");
+            }
+
             _context.Authors.Remove(author);
             _context.SaveChanges();
         }
