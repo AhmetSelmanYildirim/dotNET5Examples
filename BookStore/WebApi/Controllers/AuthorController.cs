@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using AutoMapper;
 using FluentValidation;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Application.AuthorOperations.Commands.CreateAuthor;
 using WebApi.Application.AuthorOperations.Commands.DeleteAuthor;
@@ -13,7 +9,6 @@ using WebApi.Application.AuthorOperations.Queries.GetAuthors;
 using WebApi.DBOperations;
 using static WebApi.Application.AuthorOperations.Commands.CreateAuthor.CreateAuthorCommand;
 using static WebApi.Application.AuthorOperations.Commands.UpdateAuthor.UpdateAuthorCommand;
-using static WebApi.Application.BookOperations.Commands.CreateBook.CreateBookCommand;
 
 namespace WebApi.Controllers
 {
@@ -21,10 +16,10 @@ namespace WebApi.Controllers
     [Route("[controller]s")]
     public class AuthorController : ControllerBase
     {
-        private readonly BookStoreDbContext _context;
+        private readonly IBookStoreDbContext _context;
         private readonly IMapper _mapper;
 
-        public AuthorController(BookStoreDbContext context, IMapper mapper)
+        public AuthorController(IBookStoreDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
